@@ -131,7 +131,7 @@
           swiperEl.insertBefore(cloneLast, slidesEls[0]);
           swiperEl.appendChild(cloneFirst);
           this.totalWidth = swiperEl.offsetWidth;
-          console.log(swiperEl.offsetWidth);
+          // console.log(swiperEl.offsetWidth);
           this.swiperStyle = swiperEl.style;
         }
 
