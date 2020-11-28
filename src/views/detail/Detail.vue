@@ -7,6 +7,8 @@
       <detail-shop :shop="shop"/>
       <detail-info :detailInfo="detailInfo" @detailImage="detailImage"/>
       <detail-params :detailParams="detailParams"/>
+      <detail-comment :detailRate="detailRate"/>
+      <detail-recommend/>
     </scroll>
   </div>
 </template>
@@ -22,6 +24,8 @@
   import DetailShop from "./childComps/DetailShop";
   import DetailInfo from "./childComps/DetailInfo";
   import DetailParams from "./childComps/DetailParams";
+  import DetailComment from "./childComps/DetailComment";
+  import DetailRecommend from "./childComps/DetailRecommend";
 
   export default {
     name: "Detail",
@@ -32,17 +36,20 @@
         goods: {},
         shop: {},
         detailInfo: {},
-        detailParams: {}
+        detailParams: {},
+        detailRate: {}
       }
     },
     components: {
-      Scroll,
+      DetailRecommend,
+      DetailComment,
       DetailParams,
       DetailShop,
       DetailSwiper,
       DetailNavBar,
       DetailGoods,
-      DetailInfo
+      DetailInfo,
+      Scroll
     },
     methods: {
       imgClick() {
@@ -62,6 +69,7 @@
         this.shop = new Shop(data.shopInfo);
         this.detailInfo = data.detailInfo;
         this.detailParams = new Params(data.itemParams);
+        this.detailRate = data.rate;
       })
     }
   }

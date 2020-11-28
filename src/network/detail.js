@@ -34,7 +34,7 @@ export class Shop {
 
 export class Params {
   constructor(itemParams) {
-    this.image = itemParams.info.images ? itemParams.info.images[0] : null;
+    this.image = itemParams.info && itemParams.info.images && itemParams.info.images[0];
     this.set = itemParams.info.set;
     this.tables = itemParams.rule.tables;
   }
