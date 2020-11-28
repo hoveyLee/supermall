@@ -1,7 +1,7 @@
 <template>
   <swiper class="detail-swiper">
     <swiper-item v-for="item in topImages">
-      <img :src="item" alt="">
+      <img :src="item" alt="" @load="imgClick">
     </swiper-item>
   </swiper>
 </template>
@@ -21,13 +21,18 @@
           return []
         }
       }
+    },
+    methods: {
+      imgClick() {
+        this.$emit("imgClick");
+      }
     }
   }
 </script>
 
 <style scoped>
   .detail-swiper {
-    height: 350px;
+    height: 300px;
     overflow: hidden;
   }
 </style>

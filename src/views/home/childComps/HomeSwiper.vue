@@ -12,6 +12,11 @@
   import {Swiper, SwiperItem} from "components/common/swiper";
   export default {
     name: "HomeSwiper",
+    data() {
+      return {
+        isEmit: false
+      }
+    },
     components: {
       SwiperItem,
       Swiper
@@ -26,7 +31,10 @@
     },
     methods: {
       homeSwiperImg() {
-        this.$emit("homeSwiperImg");
+        if (!this.isEmit) {
+          this.$emit("homeSwiperImg");
+          this.isEmit = true;
+        }
       }
     }
   }
