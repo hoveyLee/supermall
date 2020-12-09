@@ -38,7 +38,7 @@
   import Scroll from "components/common/scroll/Scroll";
   import BackTop from "components/content/backTop/BackTop";
 
-  import {debounce} from "common/utils";
+  import {mixin} from "common/mixin";
 
   export default {
     name: "Home",
@@ -62,7 +62,6 @@
           "sell": {page: 0, list: []}
         },
         tabType: "pop",
-        isShow: false,
         tabOffsetTop: 0,
         isShowTab: false,
         saveY: 0
@@ -79,21 +78,15 @@
       this.getHomeGoods("pop");
       this.getHomeGoods("new");
       this.getHomeGoods("sell");
-
     },
-    mounted() {
-      const refresh = debounce(this.$refs.scroll.refresh, 100);
-      this.$bus.$on('imgLoad', () => {
-        refresh();
-      });
-
-    },
+    mixins: [mixin],
     activated() {
       this.$refs.scroll.scrollTop(0, this.saveY, 0);
       this.$refs.scroll.refresh();
     },
     deactivated() {
       this.saveY = this.$refs.scroll.getScrollY();
+      this.$bus.$off("imgLoad", this.imgLinstener);
     },
     methods: {
       homeSwiperImg() {
@@ -102,11 +95,6 @@
       moreData() {
         // console.log("好想爱这个世界呀！");
         this.getHomeGoods(this.tabType);
-      },
-      scrollContent(position) {
-        // console.log(position);
-        this.isShow = -position.y > 1000;
-        this.isShowTab = -position.y > this.tabOffsetTop
       },
       getHomeMultidata() {
         getHomeMultidata().then(res => {
@@ -121,7 +109,9 @@
           this.goods[type].list.push(...res.data.list);
           this.goods[type].page = page;
           this.$refs.scroll.finishPullUp();
+          this.$refs.scroll.refresh();
         });
+
       },
       tabClick(index) {
         // console.log(index);
@@ -138,9 +128,6 @@
         }
         this.$refs.tabControl1.currentIndex = index;
         this.$refs.tabControl2.currentIndex = index;
-      },
-      backClick() {
-        this.$refs.scroll.scrollTop(0, 0);
       }
     }
   }

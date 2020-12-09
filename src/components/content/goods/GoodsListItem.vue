@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list-item" @click="itemClick">
-    <img :src="goodsItem.show.img" @load="imgLoad" alt="">
+    <img v-lazy="showImage" @load="imgLoad" alt="">
     <div class="goods-text">
       <p class="title">{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -17,6 +17,15 @@
         type: Object,
         default() {
           return {}
+        }
+      }
+    },
+    computed: {
+      showImage() {
+        if (this.goodsItem.show) {
+          return this.goodsItem.show.img
+        } else {
+          return this.goodsItem.image
         }
       }
     },

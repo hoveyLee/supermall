@@ -1,11 +1,11 @@
 <template>
   <div class="detail-params">
-    <table v-for="table in detailParams.tables">
-      <tr v-for="items in table">
+    <table v-if="detailParams.tables">
+      <tr v-for="items in detailParams.tables[0]">
         <td v-for="item in items">{{ item }}</td>
       </tr>
     </table>
-    <table>
+    <table v-if="detailParams.set">
       <tr v-for="item in detailParams.set">
         <td>{{ item.key }}</td>
         <td>{{ item.value }}</td>
@@ -58,14 +58,14 @@
   .detail-params table:first-child tr {
     display: flex;
   }
-  .detail-params table:last-child tr td:first-child {
+  .detail-params table:nth-child(2) tr td:first-child {
     padding-right: 60px;
     width: 90px;
   }
   .detail-params table:first-child tr:last-child {
     border-bottom: 2px solid #e9e9e9;
   }
-  .detail-params table:last-child td:last-child {
+  .detail-params table:nth-child(2) td:last-child {
     color: var(--color-high-text);
   }
   .detail-params-image img {

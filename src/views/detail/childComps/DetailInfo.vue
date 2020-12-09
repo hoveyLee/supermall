@@ -37,9 +37,9 @@
       detailImage() {
         // console.log(this.detailImageLength);
         // console.log(this.counter);
-        if (++this.counter === this.detailImageLength) {
-          this.$emit("detailImage");
-        }
+        // if (++this.counter === this.detailImageLength) {
+        this.$emit("detailImage");
+        // }
       }
     },
     watch: {

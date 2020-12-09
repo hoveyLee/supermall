@@ -4,7 +4,7 @@
       <span>用户评价</span>
       <span>更多<i class="right"></i></span>
     </div>
-    <div v-for="item in detailRate.list">
+    <div v-if="Object.keys(detailRate.list).length !== 0" v-for="item in detailRate.list">
       <div class="detail-comment-center">
         <div class="detail-comment-avatar">
           <img :src="item.user.avatar" alt="">
@@ -33,9 +33,6 @@
           return {}
         }
       }
-    },
-    data() {
-
     },
     filters: {
       formatTime(value) {

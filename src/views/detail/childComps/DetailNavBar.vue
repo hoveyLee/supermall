@@ -32,7 +32,7 @@
         this.$router.back();
       },
       titleClick(index) {
-        // console.log(index);
+        this.$emit("titleClick", index);
         this.currentIndex = index;
       }
     }

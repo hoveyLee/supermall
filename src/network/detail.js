@@ -9,11 +9,19 @@ export function getDetailData(iid) {
   })
 }
 
+export function getRecommend() {
+  return request({
+    url: "recommend"
+  });
+}
+
 export class Goods {
   constructor(itemInfo, columns, services) {
     this.title = itemInfo.title;
     this.price = itemInfo.price;
+    this.desc = itemInfo.desc;
     this.oldPrice = itemInfo.oldPrice;
+    this.lowNowPrice = itemInfo.lowNowPrice;
     this.discountDesc = itemInfo.discountDesc;
     this.discountBgColor = itemInfo.discountBgColor;
     this.columns = columns;
